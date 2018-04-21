@@ -2,7 +2,7 @@ package com.n26.challenge.models;
 
 public class Transaction {
     private double amount;
-    private long timestamp;
+    private long timestamp; //Epoch in millis (UTC)
 
     public double getAmount() {
         return amount;
