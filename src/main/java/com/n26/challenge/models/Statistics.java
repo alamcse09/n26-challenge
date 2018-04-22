@@ -1,50 +1,37 @@
 package com.n26.challenge.models;
 
-//TODO add annotations for required names in json representation
-public class Statistics {
-    private double sum;
-    private double average;
-    private double maximum;
-    private double minimum;
-    private long count;
+public final class Statistics {
+    private final long count;
+    private final double sum;
+    private final double average;
+    private final double max;
+    private final double min;
 
-    public double getSum() {
-        return sum;
-    }
-
-    public void setSum(double sum) {
+    public Statistics(long count, double sum, double average, double max, double min) {
+        this.count = count;
         this.sum = sum;
-    }
-
-    public double getAverage() {
-        return average;
-    }
-
-    public void setAverage(double average) {
         this.average = average;
-    }
-
-    public double getMaximum() {
-        return maximum;
-    }
-
-    public void setMaximum(double maximum) {
-        this.maximum = maximum;
-    }
-
-    public double getMinimum() {
-        return minimum;
-    }
-
-    public void setMinimum(double minimum) {
-        this.minimum = minimum;
+        this.max = max;
+        this.min = min;
     }
 
     public long getCount() {
         return count;
     }
 
-    public void setCount(long count) {
-        this.count = count;
+    public double getSum() {
+        return sum;
+    }
+
+    public double getAverage() {
+        return average;
+    }
+
+    public double getMax() {
+        return max;
+    }
+
+    public double getMin() {
+        return min;
     }
 }

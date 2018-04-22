@@ -4,5 +4,7 @@ import com.n26.challenge.models.Transaction;
 
 public interface TransactionValidationService {
 
+    boolean isValid(Transaction transaction);
+
     void validate(Transaction transaction);
 }

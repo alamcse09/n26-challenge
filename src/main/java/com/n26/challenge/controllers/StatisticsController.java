@@ -21,6 +21,6 @@ public class StatisticsController {
 
     @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Statistics getStatistics() {
-        return statisticsService.calculateStatistics();
+        return statisticsService.getCurrentStatistics();
     }
 }
