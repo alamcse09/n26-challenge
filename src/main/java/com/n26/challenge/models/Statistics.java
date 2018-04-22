@@ -3,14 +3,14 @@ package com.n26.challenge.models;
 public final class Statistics {
     private final long count;
     private final double sum;
-    private final double average;
+    private final double avg;
     private final double max;
     private final double min;
 
-    public Statistics(long count, double sum, double average, double max, double min) {
+    public Statistics(long count, double sum, double avg, double max, double min) {
         this.count = count;
         this.sum = sum;
-        this.average = average;
+        this.avg = avg;
         this.max = max;
         this.min = min;
     }
@@ -23,8 +23,8 @@ public final class Statistics {
         return sum;
     }
 
-    public double getAverage() {
-        return average;
+    public double getAvg() {
+        return avg;
     }
 
     public double getMax() {
