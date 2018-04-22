@@ -19,10 +19,11 @@ public class StatisticsCalculatorServiceImpl implements StatisticsCalculatorServ
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final PriorityQueue<Transaction> lastTransactions =
-            new PriorityQueue<>(Comparator.comparingLong(Transaction::getTimestamp));
+        new PriorityQueue<>(Comparator.comparingLong(Transaction::getTimestamp));
     private final TransactionValidationService transactionValidationService;
 
-    private Statistics currentStatistics = new Statistics(0, 0, 0, 0, 0);
+    private volatile Statistics currentStatistics = new Statistics(0, 0, 0, Double.NEGATIVE_INFINITY,
+        Double.POSITIVE_INFINITY);
 
     @Autowired
     public StatisticsCalculatorServiceImpl(TransactionValidationService transactionValidationService) {
@@ -37,7 +38,7 @@ public class StatisticsCalculatorServiceImpl implements StatisticsCalculatorServ
         long newCount = currentStatistics.getCount() + 1;
         double newMaximum = Math.max(currentStatistics.getMax(), transactionAmount);
         double newMinimum = Math.min(currentStatistics.getMin(), transactionAmount);
-        double newAverage = (currentStatistics.getAverage() * currentStatistics.getCount() + transactionAmount)
+        double newAverage = (currentStatistics.getAvg() * currentStatistics.getCount() + transactionAmount)
             / newCount;
         double newSum = currentStatistics.getSum() + transactionAmount;
 
@@ -70,8 +71,8 @@ public class StatisticsCalculatorServiceImpl implements StatisticsCalculatorServ
         int size = lastTransactions.size();
         double sum = newStatistics.getSum();
         double average = newStatistics.getAverage();
-        double max = newStatistics.getMax() != Double.NEGATIVE_INFINITY ? newStatistics.getMax() : 0;
-        double min = newStatistics.getMin() != Double.POSITIVE_INFINITY ? newStatistics.getMin() : 0;
+        double max = newStatistics.getMax();
+        double min = newStatistics.getMin();
 
         currentStatistics = new Statistics(size, sum, average, max, min);
     }

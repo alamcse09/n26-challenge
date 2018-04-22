@@ -4,6 +4,11 @@ public class Transaction {
     private double amount;
     private long timestamp; //Epoch in millis (UTC)
 
+    public Transaction(double amount, long timestamp) {
+        this.amount = amount;
+        this.timestamp = timestamp;
+    }
+
     public double getAmount() {
         return amount;
     }

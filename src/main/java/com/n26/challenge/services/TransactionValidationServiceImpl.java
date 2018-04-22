@@ -28,8 +28,12 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
     @Override
     public boolean isValid(Transaction transaction) {
         Instant instantOfTransaction = Instant.ofEpochMilli(transaction.getTimestamp());
-        Instant oldestValidInstant = Instant.now().minusSeconds(MAX_VALID_AGE_IN_SECONDS);
+        Instant oldestValidInstant = now().minusSeconds(MAX_VALID_AGE_IN_SECONDS);
 
         return !instantOfTransaction.isBefore(oldestValidInstant);
+    }
+
+    protected Instant now() {
+        return Instant.now();
     }
 }
